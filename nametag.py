@@ -41,7 +41,10 @@ for i in tqdm(range(len(members))):
   _, _, sw, sh = out_img.textbbox(xy=(0,0), text=members['학교'][i], font=boldfont(fontsize=schoolsize))
   out_img.text(xy=((width-sw)/2, 1092), text=members['학교'][i], fill=(255,255,255), font=boldfont(fontsize=schoolsize))
 
-  target_img.save('./output/{0}.png'.format(members['이름'][i]))
+  if os.path.isfile('./output/{0}.png'.format(members['이름'][i])):
+    target_img.save('./output/{0}-2.png'.format(members['이름'][i]))
+  else:
+    target_img.save('./output/{0}.png'.format(members['이름'][i]))
 
 
 print('\n\nMaking Staff\'s name tag..\n')
